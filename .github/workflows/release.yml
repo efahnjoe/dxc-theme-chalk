@@ -20,6 +20,12 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Build
+        run: cargo build
+
+      - name: Check & Test
+        run: cargo check && cargo test
+
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
         with:
@@ -36,12 +42,6 @@ jobs:
           # If `false`, only the cargo registry will be cached.
           # default: "true"
           cache-targets: true
-
-      - name: Build
-        run: cargo build
-
-      - name: Check & Test
-        run: cargo check && cargo test
 
       - name: Create GitHub Release
         id: release

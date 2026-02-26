@@ -15,6 +15,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
         with:
@@ -31,9 +34,6 @@ jobs:
           # If `false`, only the cargo registry will be cached.
           # default: "true"
           cache-targets: true
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
 
       - name: Build
         run: cargo build
