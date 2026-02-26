@@ -9,6 +9,15 @@ documentation = "https://docs.rs/dxc-theme-chalk"
 readme = "README.md"
 version = "0.1.0"
 edition = "2024"
+include = [
+  "Cargo.toml",
+  "LICENSE",
+  "README.md",
+  "src/**/*",
+  "assets/**/*",
+  "out/**/*",
+  "package.json",
+]
 
 [dependencies]
 dioxus = "0.7.3"
