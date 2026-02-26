@@ -1,0 +1,15 @@
+{
+  "name": "dxc-theme-chalk",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "sass assets/index.scss:out/index.css --style=compressed --no-source-map"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "sass": "^1.97.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

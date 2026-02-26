@@ -1,0 +1,52 @@
+name: Publish release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          # Only save in the main branch.
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+
+          # Determines which crates are cached.
+          # If `true` all crates will be cached, otherwise only dependent crates will be cached.
+          # Useful if additional crates are used for CI tooling.
+          # default: "false"
+          cache-all-crates: true
+
+          # Determines whether workspace `target` directories are cached.
+          # If `false`, only the cargo registry will be cached.
+          # default: "true"
+          cache-targets: true
+
+      - name: Build
+        run: cargo build
+
+      - name: Check & Test
+        run: cargo check && cargo test
+
+      - name: Create GitHub Release
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.RELEASE_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
