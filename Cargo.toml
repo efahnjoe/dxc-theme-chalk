@@ -1,5 +1,12 @@
 [package]
 name = "dxc-theme-chalk"
+authors = ["Efahn Joe <efahnjoe@gmail.com>"]
+description = "A Chalk theme for dxc"
+license = "MIT"
+repository = "https://github.com/efahnjoe/dxc-theme-chalk"
+homepage = "https://github.com/efahnjoe/dxc-theme-chalk"
+documentation = "https://docs.rs/dxc-theme-chalk"
+readme = "README.md"
 version = "0.1.0"
 edition = "2024"
 
